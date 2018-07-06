@@ -8,7 +8,8 @@ end
 
 get "/songs/:song_name" do
 	file_name = file_paths.find {|file| file == "songs/#{params[:song_name]}.txt"}
-	
+	return "Song not found" if file_name.nil?
+  
   file = File.open(file_name, "r")
 	lyrics = file.read
   lyrics = lyrics.gsub("\n", '<br>')

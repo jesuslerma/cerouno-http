@@ -25,3 +25,33 @@ get "/songs/:song_name" do
 	html
 end
 
+post "/songs/:song_name" do
+  song_name = params[:song_name]
+  lyrics_content = request.body.read
+
+  song_path = "songs/#{song_name}.txt"
+  song_file = File.open(song_path, "w")
+  song_file.write(lyrics_content)
+  song_file.close()
+
+  "titulo:" + song_name + ", letra:" +lyrics_content
+  # 
+end
+
+post "/songs" do
+  song_name = params[:song_name]
+  lyrics_content = params[:song_lyrics]
+
+  song_path = "songs/#{song_name}.txt"
+  song_file = File.open(song_path, "w")
+  song_file.write(lyrics_content)
+  song_file.close()
+end
+
+get "/" do
+  file_name = "../client/form.html"
+  file = File.open(file_name, "r")
+  html = file.read
+  file.close
+  html
+end

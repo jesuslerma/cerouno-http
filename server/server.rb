@@ -19,3 +19,13 @@ get "/style.css" do
 	content_type 'text/css'
 	css
 end
+
+get "/style2.css" do
+	file_name = "../client/style.css"
+	# delete file
+	css
+end
+
+post "/songs" do
+	request.body.read
+end
